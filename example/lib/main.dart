@@ -69,6 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 });
                 var pageData = await instance.searchSummaryWithPageId(
                     pageId: _data[index].pageid!);
+                if (!mounted) return;
                 setState(() {
                   _loading = false;
                 });
@@ -92,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         padding: const EdgeInsets.all(10),
                         children: [
                           Text(
-                            pageData!.title!,
+                            pageData.title!,
                             style: const TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 20),
                           ),
@@ -136,7 +137,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           Visibility(
             visible: _loading,
-            child: Container(
+            child: SizedBox(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
               child: const Center(
@@ -161,8 +162,8 @@ class _MyHomePageState extends State<MyHomePage> {
         _loading = false;
         _data = result!.query!.search!;
       });
-    } catch (e) {
-      print(e);
+    } catch (e, stack) {
+      debugPrint("$e $stack");
       setState(() {
         _loading = false;
       });
