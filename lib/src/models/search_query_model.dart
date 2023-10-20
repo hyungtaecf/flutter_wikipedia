@@ -3,8 +3,9 @@
 
 import 'package:wikipedia/src/utils/parse_html.dart';
 
+/// Query Result
 class WikipediaResponse {
-  Query? query; ///Query Result
+  Query? query;
 
   WikipediaResponse({this.query});
 
@@ -46,12 +47,24 @@ class Query {
 
 class WikipediaSearch {
   int? ns;
-  String? title; ///Title of Result
-  int? pageid; ///Page Id of Single Result
-  int? size; ///Size of Result
-  int? wordcount; ///Word Count
-  String? snippet; ///Snippet
-  String? timestamp; ///Timestamp
+
+  /// Title of Result
+  String? title;
+
+  /// Page Id of Single Result
+  int? pageid;
+
+  /// Size of Result
+  int? size;
+
+  /// Word Count
+  int? wordcount;
+
+  /// Snippet
+  String? snippet;
+
+  /// Timestamp
+  String? timestamp;
 
   WikipediaSearch(
       {this.ns,

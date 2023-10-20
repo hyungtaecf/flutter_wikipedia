@@ -92,17 +92,32 @@ class _MyHomePageState extends State<MyHomePage> {
                       body: ListView(
                         padding: const EdgeInsets.all(10),
                         children: [
-                          Text(
-                            pageData.title!,
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20),
-                          ),
-                          const SizedBox(height: 8),
-                          Text(
-                            pageData.description!,
-                            style: const TextStyle(
-                                color: Colors.grey,
-                                fontStyle: FontStyle.italic),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                  children: [
+                                    Text(
+                                      pageData.title!,
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20),
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Text(
+                                      pageData.description!,
+                                      style: const TextStyle(
+                                          color: Colors.grey,
+                                          fontStyle: FontStyle.italic),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              if (pageData.thumbnail != null)
+                                Image.network(pageData.thumbnail!.source),
+                            ],
                           ),
                           const SizedBox(height: 8),
                           Text(pageData.extract!)
@@ -160,7 +175,8 @@ class _MyHomePageState extends State<MyHomePage> {
           await instance.searchQuery(searchQuery: _controller.text, limit: 10);
       setState(() {
         _loading = false;
-        _data = result!.query!.search!;
+        final data = result?.query?.search;
+        if (data != null) _data = data;
       });
     } catch (e, stack) {
       debugPrint("$e $stack");

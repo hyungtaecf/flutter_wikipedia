@@ -1,0 +1,8 @@
+version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
+options: "7b5d953ecf770980d69004eb0ebb3ccd63ab41b8777214a079cc2ce040978896"
+build_start_time: [1697821156, 702383995]
+build_end_time: [1697821156, 984904050]
+inputs:
+  "/Users/hyungtae/Documents/Github/flutter_wikipedia/example/macos/Flutter/GeneratedPluginRegistrant.swift": !private [1697821074, 644670486]
+  "/Users/hyungtae/Documents/Github/flutter_wikipedia/example/macos/Runner/AppDelegate.swift": !private [1697787575, 48054933]
+  "/Users/hyungtae/Documents/Github/flutter_wikipedia/example/macos/Runner/MainFlutterWindow.swift": !private [1697787574, 906620264]

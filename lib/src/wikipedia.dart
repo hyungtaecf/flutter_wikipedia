@@ -7,6 +7,10 @@ import 'package:http/http.dart' as http;
 import 'package:wikipedia/src/models/search_query_model.dart';
 import 'package:wikipedia/src/models/summary_data_model.dart';
 
+export 'package:wikipedia/src/models/search_query_model.dart';
+export 'package:wikipedia/src/models/summary_data_model.dart';
+export 'package:wikipedia/src/models/thumbnail.dart';
+
 ///This is the base URL[_baseUrl] for the Wikipedia API.
 String _baseUrl = "https://en.wikipedia.org/w/api.php";
 
@@ -28,6 +32,18 @@ class Wikipedia {
   /// The searchSummaryWithPageId is for searching page with the help for page id.
   /// You can get page data by providing the page id. Page Id is required.
   Future<WikipediaSummaryData?> searchSummaryWithPageId(
+      {required int pageId}) async {
+    try {
+      final responseData = await http.get(Uri.parse(
+          "$_baseUrl?action=query&format=json&pageids=$pageId&prop=pageimages|extracts|description&origin=*"));
+      return WikipediaSummaryData.fromJson(
+          json.decode(responseData.body)["query"]["pages"]["$pageId"]);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<WikipediaSummaryData?> searchPageImagesWithPageId(
       {required int pageId}) async {
     try {
       final responseData = await http.get(Uri.parse(
