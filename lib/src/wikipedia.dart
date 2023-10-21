@@ -3,6 +3,7 @@
 
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:wikipedia/src/models/search_query_model.dart';
 import 'package:wikipedia/src/models/summary_data_model.dart';
@@ -24,7 +25,25 @@ class Wikipedia {
       final responseData = await http.get(Uri.parse(
           "$_baseUrl?action=query&format=json&list=search&srlimit=$limit&srsearch=$searchQuery&origin=*"));
       return WikipediaResponse.fromJson(json.decode(responseData.body));
-    } catch (e) {
+    } catch (e, stack) {
+      debugPrint("$e $stack");
+      return null;
+    }
+  }
+
+  Future<List<WikipediaSummaryData>?> getRandomPages({int limit = 1}) async {
+    try {
+      final responseData = await http.get(Uri.parse(
+          "$_baseUrl?action=query&format=json&generator=random&grnnamespace=0&prop=pageimages|extracts|description&grnlimit=$limit"));
+
+      final pages = Map<String, dynamic>.from(
+          json.decode(responseData.body)["query"]["pages"]);
+      final result = pages.values.map<WikipediaSummaryData>((e) {
+        return WikipediaSummaryData.fromJson(e as Map<String, dynamic>);
+      }).toList();
+      return result;
+    } catch (e, stack) {
+      debugPrint("$e $stack");
       return null;
     }
   }
@@ -36,18 +55,6 @@ class Wikipedia {
     try {
       final responseData = await http.get(Uri.parse(
           "$_baseUrl?action=query&format=json&pageids=$pageId&prop=pageimages|extracts|description&origin=*"));
-      return WikipediaSummaryData.fromJson(
-          json.decode(responseData.body)["query"]["pages"]["$pageId"]);
-    } catch (e) {
-      return null;
-    }
-  }
-
-  Future<WikipediaSummaryData?> searchPageImagesWithPageId(
-      {required int pageId}) async {
-    try {
-      final responseData = await http.get(Uri.parse(
-          "$_baseUrl?action=query&format=json&pageids=$pageId&prop=extracts|description&origin=*"));
       return WikipediaSummaryData.fromJson(
           json.decode(responseData.body)["query"]["pages"]["$pageId"]);
     } catch (e) {

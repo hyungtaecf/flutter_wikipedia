@@ -223,6 +223,7 @@
 /Users/hyungtae/Documents/Github/flutter_wikipedia/example/pubspec.yaml
 /Users/hyungtae/Documents/Github/flutter_wikipedia/lib/src/models/search_query_model.dart
 /Users/hyungtae/Documents/Github/flutter_wikipedia/lib/src/models/summary_data_model.dart
+/Users/hyungtae/Documents/Github/flutter_wikipedia/lib/src/models/thumbnail.dart
 /Users/hyungtae/Documents/Github/flutter_wikipedia/lib/src/utils/parse_html.dart
 /Users/hyungtae/Documents/Github/flutter_wikipedia/lib/src/wikipedia.dart
 /Users/hyungtae/Documents/Github/flutter_wikipedia/lib/wikipedia.dart

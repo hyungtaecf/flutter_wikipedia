@@ -26,11 +26,21 @@ migrate_working_dir/
 **/ios/Flutter/.last_build_id
 .dart_tool/
 .flutter-plugins
+.flutter-plugins
 .flutter-plugins-dependencies
 .packages
 .pub-cache/
 .pub/
 /build/
+
+/example/dart_tool/
+/example/flutter-plugins
+/example/flutter-plugins
+/example/flutter-plugins-dependencies
+/example/packages
+/example/pub-cache/
+/example/pub/
+/example/build/
 
 # Symbolication related
 app.*.symbols
@@ -42,3 +52,7 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+/example/android/app/debug
+/example/android/app/profile
+/example/android/app/release

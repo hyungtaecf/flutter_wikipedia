@@ -39,8 +39,12 @@ class WikipediaSummaryData {
     pageid = json['pageid'];
     ns = json['ns'];
     title = json['title'];
-    extract = ParserHtml().parserHtml(json['extract']);
-    description = ParserHtml().parserHtml(json['description']);
+    final extract_ = json['extract'];
+    if (extract_ != null) extract = ParserHtml().parserHtml(extract_);
+    final description_ = json['description'];
+    if (description_ != null) {
+      description = ParserHtml().parserHtml(description_);
+    }
     descriptionsource = json['descriptionsource'];
     final thumbnail_ = json["thumbnail"];
     if (thumbnail_ != null) thumbnail = Thumbnail.fromJson(json["thumbnail"]);
